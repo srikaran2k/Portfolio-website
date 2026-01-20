@@ -2012,3 +2012,30 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
 }
+
+.experience-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(0, 128, 128, 0.05);
+    border-left: 3px solid var(--accent-teal);
+    border-radius: 6px;
+}
+
+.achievements-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.tech-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}

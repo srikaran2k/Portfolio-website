@@ -120,22 +120,42 @@ projectButtons.forEach(button => {
   });
 });
 
-// Contact Form Handling
+// Contact Form Handling - Google Sheets Integration (Silent Submission)
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
-  
-  // Since this is a UI-only form, just show an alert
-  alert(`Thank you for your message, ${name}! This is a demo form. In a real application, your message would be sent.`);
-  
-  // Reset form
-  contactForm.reset();
+contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    // Create FormData object
+    const formData = new FormData();
+    formData.append('entry.1533545076', name);      
+    formData.append('entry.1015710991', email);     
+    formData.append('entry.1592601976', message);    
+
+    // Submit to Google Forms silently (no new tab)
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSe74ciV0ycnYy4d29oiLcMmzafP4lUUwSn4HSa9W6AxTjby_Q/formResponse', {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+    })
+    .then(() => {
+        // Show success message
+        alert(`Thank you for reaching out, ${name}! Your message has been sent successfully. I'll get back to you soon.`);
+        
+        // Reset form
+        contactForm.reset();
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('There was an error sending your message. Please try again.');
+    });
 });
+
+
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
